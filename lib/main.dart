@@ -18,6 +18,28 @@ void main() {
 class DicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Image.asset(
+                'images/dice1.png',
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Image.asset(
+                'images/dice2.png',
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
