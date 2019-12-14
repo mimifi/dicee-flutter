@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   return runApp(
@@ -15,7 +16,19 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int rightDiceImageNumber = 1;
+  int leftDiceImageNumber = 1;
+
+  int diceImageNumber(maxNumber) {
+    return Random().nextInt(maxNumber) + 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -23,23 +36,27 @@ class DicePage extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: FlatButton(
-              onPressed: () {
-                print('This is the left button.');
-              },
-              child: Image.asset(
-                'images/dice1.png',
-              ),
-            ),
-          ),
-          Expanded(
-            child: FlatButton(
-              onPressed: () {
-                print('This is the right button.');
-              },
-              child: Image.asset(
-                'images/dice2.png',
-              ),
-            ),
+                onPressed: () {
+                  setState(() {
+                    rightDiceImageNumber = diceImageNumber(6);
+                    leftDiceImageNumber = diceImageNumber(6);
+                  });
+                },
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Padding(
+                      child:
+                          Image.asset('images/dice$rightDiceImageNumber.png'),
+                      padding: EdgeInsets.symmetric(horizontal: 5.0),
+                    )),
+                    Expanded(
+                        child: Padding(
+                      child: Image.asset('images/dice$leftDiceImageNumber.png'),
+                      padding: EdgeInsets.symmetric(horizontal: 5.0),
+                    ))
+                  ],
+                )),
           ),
         ],
       ),
